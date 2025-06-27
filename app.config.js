@@ -34,8 +34,8 @@ export default {
         // Enable automation for XCUITest
         "CFBundleAllowMixedLocalizations": true
       },
-      // Development team for debug builds
-      developmentTeam: process.env.APPLE_TEAM_ID || "YOUR_TEAM_ID"
+      // Development team for debug builds (only used in CNG/Prebuild)
+      // developmentTeam: process.env.APPLE_TEAM_ID || "YOUR_TEAM_ID"
     },
     android: {
       adaptiveIcon: {
@@ -52,8 +52,8 @@ export default {
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.READ_EXTERNAL_STORAGE"
       ],
-      // Enable debug keystore for testing
-      signingKey: process.env.NODE_ENV === 'development' ? 'debug' : undefined
+      // Enable debug keystore for testing (only used in CNG/Prebuild)
+      // signingKey: process.env.NODE_ENV === 'development' ? 'debug' : undefined
     },
     web: {
       favicon: "./assets/favicon.png"
@@ -62,7 +62,14 @@ export default {
     developmentClient: {
       silentLaunch: true
     },
+    // Runtime version for compatibility with different SDK versions
+    runtimeVersion: {
+      policy: "nativeVersion"
+    },
     extra: {
+      eas: {
+        projectId: "4e7cf5ef-12d1-4745-aded-88fb7c859432"
+      },
       // Environment variables for testing
       apiUrl: process.env.API_URL || "http://localhost:3000",
       enableTesting: process.env.ENABLE_TESTING === "true",
@@ -91,9 +98,10 @@ export default {
             // Enable debugging for Espresso
             debuggable: process.env.NODE_ENV === 'development',
             testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner",
+            compileSdkVersion: 35,
+            targetSdkVersion: 34,
             minSdkVersion: 21,
-            compileSdkVersion: 33,
-            targetSdkVersion: 33
+            buildToolsVersion: "34.0.0"
           },
           ios: {
             // Enable debugging for XCUITest
@@ -102,14 +110,14 @@ export default {
         }
       ]
     ],
-    // Debugging configurations
-    debugging: {
-      // Enable remote debugging
-      remoteDebugging: process.env.NODE_ENV === 'development',
-      // Enable accessibility inspector
-      accessibilityInspector: true,
-      // Enable element inspector for Appium
-      elementInspector: process.env.ENABLE_TESTING === "true"
-    }
+    // Debugging configurations (custom, not part of Expo schema)
+    // debugging: {
+    //   // Enable remote debugging
+    //   remoteDebugging: process.env.NODE_ENV === 'development',
+    //   // Enable accessibility inspector
+    //   accessibilityInspector: true,
+    //   // Enable element inspector for Appium
+    //   elementInspector: process.env.ENABLE_TESTING === "true"
+    // }
   }
 };
