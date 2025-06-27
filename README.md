@@ -131,24 +131,107 @@ npx react-native run-android
 
 ## 📱 Builds e Deploy
 
+### Scripts Disponíveis
+
+```bash
+# Desenvolvimento
+npm start                    # Inicia o servidor Expo
+npm run start:clear         # Inicia com cache limpo
+npm run start:tunnel        # Inicia com túnel para dispositivos físicos
+
+# Execução em dispositivos/emuladores
+npm run android             # Executa no Android
+npm run ios                # Executa no iOS
+npm run web                # Executa na web
+npm run android:device     # Executa em dispositivo Android físico
+npm run ios:device         # Executa em dispositivo iOS físico
+npm run android:emulator   # Executa no emulador Android
+npm run ios:simulator      # Executa no simulador iOS
+
+# Builds com EAS
+npm run build:android:debug    # Build debug Android
+npm run build:ios:debug       # Build debug iOS
+npm run build:android:release # Build release Android
+npm run build:ios:release     # Build release iOS
+npm run build:all:debug       # Build debug para ambas plataformas
+npm run build:all:release     # Build release para ambas plataformas
+
+# Build nativo local
+npm run prebuild              # Gera código nativo
+npm run prebuild:clean       # Gera código nativo limpo
+npm run run:android          # Executa build nativo Android
+npm run run:ios             # Executa build nativo iOS
+npm run run:android:debug   # Executa build debug Android
+npm run run:ios:debug       # Executa build debug iOS
+
+# Instalação em dispositivos
+npm run install:android     # Instala APK no dispositivo Android
+npm run install:ios        # Instala no simulador iOS
+
+# Qualidade de código
+npm test                   # Executa testes
+npm run test:watch        # Executa testes em modo watch
+npm run test:coverage     # Executa testes com cobertura
+npm run lint              # Verifica linting
+npm run lint:fix         # Corrige problemas de linting
+npm run type-check       # Verifica tipos TypeScript
+
+# Utilitários
+npm run doctor           # Verifica problemas na configuração
+npm run upgrade         # Atualiza dependências do Expo
+```
+
+### Pré-requisitos para Builds
+
+#### Para Android
+```bash
+# Instale o Android Studio
+# Configure as variáveis de ambiente:
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+#### Para iOS
+```bash
+# Instale o Xcode via App Store
+# Instale as ferramentas de linha de comando:
+xcode-select --install
+
+# Instale CocoaPods
+sudo gem install cocoapods
+```
+
 ### Build de Debug
 
 ```bash
-# Android Debug
-expo build:android --type apk
+# Preparar projeto (primeira vez)
+npm run prebuild
 
-# iOS Debug
-expo build:ios --type simulator
+# Android Debug
+npm run build:android:debug
+# ou build local
+npm run run:android:debug
+
+# iOS Debug  
+npm run build:ios:debug
+# ou build local
+npm run run:ios:debug
 ```
 
 ### Build de Produção
 
 ```bash
-# Android Release
-expo build:android --type app-bundle
+# Android Release (requer configuração EAS)
+npm run build:android:release
 
-# iOS Release
-expo build:ios --type archive
+# iOS Release (requer configuração EAS)
+npm run build:ios:release
+
+# Build para ambas plataformas
+npm run build:all:release
 ```
 
 ### Configurações de Build

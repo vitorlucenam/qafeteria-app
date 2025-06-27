@@ -35,3 +35,47 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Build outputs
+android/app/build/
+android/build/
+ios/build/
+ios/DerivedData/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+
+# Project specific
+bin/
+lib/
+
+# EAS
+.eas/
+
+# Xcode
+ios/*.xcworkspace
+ios/Pods/
+ios/Podfile.lock
+
+# Android
+android/app/debug.keystore
+android/app/release-key.keystore
+android/.gradle/
+android/gradlew
+android/gradlew.bat
+android/gradle/
+
+# Backup files
+*.backup
+*.bak
